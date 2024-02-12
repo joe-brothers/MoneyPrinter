@@ -222,9 +222,11 @@ def generate_video(combined_video_path: str, tts_path: str, subtitles_path: str,
     # Make a generator that returns a TextClip when called with consecutive
     generator = lambda txt: TextClip(
         txt,
-        font="../fonts/bold_font.ttf",
+        # font="../fonts/bold_font.ttf",
+        # font="../fonts/Bebas-Regular.ttf",
+        font="../fonts/Jalnan2TTF.ttf",
         fontsize=100,
-        color="#FFFF00",
+        color="#FFFFFF",
         stroke_color="black",
         stroke_width=5,
     )

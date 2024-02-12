@@ -117,8 +117,22 @@ def generate_script(video_subject: str, paragraph_number: int, ai_model: str, vo
     
     Subject: {video_subject}
     Number of paragraphs: {paragraph_number}
-    Language: {voice}
+    Language: Korean
 
+    The script is to be returned as a string with the specified number of paragraphs. Each paragraph should be consisted about 6 sentences.
+
+    Here is an example of a string:
+    "This is an example string."
+
+    Do not under any circumstance reference this prompt in your response.
+
+    Get straight to the point, don't start with unnecessary things like, "welcome to this video".
+
+    Obviously, the script should be related to the subject of the video.
+
+    YOU MUST NOT INCLUDE ANY TYPE OF MARKDOWN OR FORMATTING IN THE SCRIPT, NEVER USE A TITLE.
+    YOU MUST WRITE THE SCRIPT IN THE LANGUAGE SPECIFIED IN [LANGUAGE].
+    ONLY RETURN THE RAW CONTENT OF THE SCRIPT. DO NOT INCLUDE "VOICEOVER", "NARRATOR" OR SIMILAR INDICATORS OF WHAT SHOULD BE SPOKEN AT THE BEGINNING OF EACH PARAGRAPH OR LINE. YOU MUST NOT MENTION THE PROMPT, OR ANYTHING ABOUT THE SCRIPT ITSELF. ALSO, NEVER TALK ABOUT THE AMOUNT OF PARAGRAPHS OR LINES. JUST WRITE THE SCRIPT.
     """
 
     # Generate script
@@ -172,9 +186,9 @@ def get_search_terms(video_subject: str, amount: int, script: str, ai_model: str
 
     # Build prompt
     prompt = f"""
-    Generate {amount} search terms for stock videos,
+    Generate {amount} search terms in English for stock videos,
     depending on the subject of a video.
-    Subject: {video_subject}
+    Subject (in Korean): {video_subject}
 
     The search terms are to be returned as
     a JSON-Array of strings.
@@ -183,10 +197,10 @@ def get_search_terms(video_subject: str, amount: int, script: str, ai_model: str
     always add the main subject of the video.
     
     YOU MUST ONLY RETURN THE JSON-ARRAY OF STRINGS.
-    YOU MUST NOT RETURN ANYTHING ELSE. 
+    YOU MUST NOT RETURN ANYTHING ELSE.
     YOU MUST NOT RETURN THE SCRIPT.
     
-    The search terms must be related to the subject of the video.
+    The search terms must be related to the subject of the video. And search terms should be general and not too specific. And the search terms should be in English.
     Here is an example of a JSON-Array of strings:
     ["search term 1", "search term 2", "search term 3"]
 
@@ -242,6 +256,8 @@ def generate_metadata(video_subject: str, script: str, ai_model: str) -> Tuple[s
     # Build prompt for title  
     title_prompt = f"""  
     Generate a catchy and SEO-friendly title for a YouTube shorts video about {video_subject}.  
+    
+    It must be in Korean.
     """  
   
     # Generate title  
@@ -250,6 +266,7 @@ def generate_metadata(video_subject: str, script: str, ai_model: str) -> Tuple[s
     # Build prompt for description  
     description_prompt = f"""  
     Write a brief and engaging description for a YouTube shorts video about {video_subject}.  
+    It must be in Korean.
     The video is based on the following script:  
     {script}  
     """  
